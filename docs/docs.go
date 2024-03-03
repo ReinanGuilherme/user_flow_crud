@@ -15,9 +15,9 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/cadastrar_pessoa": {
+        "/cadastrarConta": {
             "post": {
-                "description": ".",
+                "description": "Cadastrar uma nova conta no sistema.",
                 "consumes": [
                     "application/json"
                 ],
@@ -25,25 +25,44 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Pessoa"
+                    "Cadastrar"
                 ],
-                "summary": ".",
+                "summary": "Cadastrar uma nova conta no sistema.",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003cToken aqui\u003e",
-                        "description": "Token",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    },
                     {
                         "description": "Objeto",
                         "name": "object",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/controllers.cadastrar_pessoa_request"
+                            "$ref": "#/definitions/controllers.cadastrarContaRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/cadastrarDadosCompletos": {
+            "post": {
+                "description": "Cadastrar uma nova conta no sistema com seus dados completos como pessoa, endereço e contato.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cadastrar"
+                ],
+                "summary": "Cadastrar uma nova conta no sistema com seus dados completos como pessoa, endereço e contato.",
+                "parameters": [
+                    {
+                        "description": "Objeto",
+                        "name": "object",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controllers.cadastrarDadosCompletosRequest"
                         }
                     }
                 ],
@@ -68,15 +87,43 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "controllers.cadastrar_pessoa_request": {
+        "controllers.cadastrarContaRequest": {
             "type": "object",
             "properties": {
-                "pessoa": {
-                    "$ref": "#/definitions/repositories.Cadastrar_Pessoa_Args"
+                "conta": {
+                    "$ref": "#/definitions/repositories.CadastrarContaArgs"
                 }
             }
         },
-        "repositories.Cadastrar_Pessoa_Args": {
+        "controllers.cadastrarDadosCompletosRequest": {
+            "type": "object",
+            "properties": {
+                "conta": {
+                    "$ref": "#/definitions/repositories.CadastrarContaArgs"
+                },
+                "pessoa": {
+                    "$ref": "#/definitions/repositories.CadastrarPessoaArgs"
+                }
+            }
+        },
+        "repositories.CadastrarContaArgs": {
+            "type": "object",
+            "properties": {
+                "ativo": {
+                    "type": "boolean"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "foto_perfil": {
+                    "type": "string"
+                },
+                "senha": {
+                    "type": "string"
+                }
+            }
+        },
+        "repositories.CadastrarPessoaArgs": {
             "type": "object",
             "properties": {
                 "data_nascimento": {

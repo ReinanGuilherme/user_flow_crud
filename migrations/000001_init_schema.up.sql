@@ -1,9 +1,10 @@
--- Tabela pessoas
-CREATE TABLE pessoas (
+-- Tabela contas
+CREATE TABLE contas (
     id SERIAL PRIMARY KEY,
-    nome VARCHAR(100),
-    sobrenome VARCHAR(100),
-    genero VARCHAR(10),
-    data_nascimento DATE
+    email VARCHAR(100),
+    senha VARCHAR(50),
+    ativo BOOLEAN,
+    token VARCHAR(100),
+    foto_perfil VARCHAR(200),
+    data_ultima_sessao TIMESTAMP WITH TIME ZONE
 );
-

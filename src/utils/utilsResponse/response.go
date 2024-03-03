@@ -1,4 +1,4 @@
-package utils_response
+package utilsResponse
 
 import (
 	"github.com/gin-gonic/gin"

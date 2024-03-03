@@ -5,11 +5,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// verifica se o servidor está funcionando ou não.
+// configurações das rotas da API
 func SetupRouterApi(r *gin.Engine) {
 
 	//publica
-	rota_publica := r.Group("/")
-	rota_publica.POST("/cadastrar_pessoa", controllers.Cadastrar_Pessoa)
+	rotaPublica := r.Group("/")
+	rotaPublica.POST("/cadastrarConta", controllers.CadastrarConta)
+	rotaPublica.POST("/cadastrarDadosCompletos", controllers.CadastrarDadosCompletos)
 
 }

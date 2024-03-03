@@ -1,11 +1,10 @@
--- Tabela contas
-CREATE TABLE contas (
+-- Tabela pessoas
+CREATE TABLE pessoas (
     id SERIAL PRIMARY KEY,
-    email VARCHAR(100),
-    senha VARCHAR(50),
-    ativo BOOLEAN,
-    token VARCHAR(100),
-    foto_perfil VARCHAR(200),
-    data_ultima_sessao TIMESTAMP,
-    fk_id_pessoa INTEGER REFERENCES pessoas(id)
+    nome VARCHAR(100),
+    sobrenome VARCHAR(100),
+    genero VARCHAR(10),
+    data_nascimento DATE,
+    fk_id_conta INTEGER REFERENCES contas(id)
 );
+

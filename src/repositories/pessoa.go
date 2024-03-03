@@ -5,33 +5,35 @@ import (
 	"gorm.io/gorm"
 )
 
-type pessoa_DB struct {
+type pessoaDB struct {
 	db *gorm.DB
 }
 
-func Pessoa_Repository(db *gorm.DB) *pessoa_DB {
-	return &pessoa_DB{db: db}
+func PessoaRepository(db *gorm.DB) *pessoaDB {
+	return &pessoaDB{db: db}
 }
 
-type Cadastrar_Pessoa_Args struct {
-	Nome            string `json:"nome"`
-	Sobrenome       string `json:"sobrenome"`
-	Genero          string `json:"genero"`
-	Data_Nascimento string `json:"data_nascimento"`
+type CadastrarPessoaArgs struct {
+	Nome           string `json:"nome"`
+	Sobrenome      string `json:"sobrenome"`
+	Genero         string `json:"genero"`
+	DataNascimento string `json:"data_nascimento"`
+	FKIDConta      int    `json:"-"`
 }
 
-func (repository *pessoa_DB) Cadastrar_Pessoa(args Cadastrar_Pessoa_Args) (models.Pessoa, error) {
+func (repository *pessoaDB) CadastrarPessoa(args CadastrarPessoaArgs) (models.Pessoa, error) {
 	var retorno models.Pessoa
 	err := repository.db.Raw(`
     INSERT INTO pessoas (
 		nome,
 		sobrenome,
 		genero,
-		data_nascimento
+		data_nascimento,
+		fk_id_conta
 	)
 	VALUES (?, ?, ?, ?)
-	RETURNING id,nome,sobrenome,genero,data_nascimento;	
-    `, args.Nome, args.Sobrenome, args.Genero, args.Data_Nascimento).Scan(&retorno).Error
+	RETURNING id,nome,sobrenome,genero,data_nascimento,fk_id_conta;	
+    `, args.Nome, args.Sobrenome, args.Genero, args.DataNascimento, args.FKIDConta).Scan(&retorno).Error
 
 	if err != nil {
 		return models.Pessoa{}, err

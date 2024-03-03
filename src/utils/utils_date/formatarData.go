@@ -1,4 +1,4 @@
-package utils_date
+package utilsDate
 
 import (
 	"errors"
@@ -6,7 +6,7 @@ import (
 )
 
 // formatando data de nascimento para o padrão do banco de dados postgres
-func Formatar_Data_Para_Padrao_Postgres(data string) (string, error) {
+func FormatarDataParaPadraoPostgres(data string) (string, error) {
 	dataNascimento, err := time.Parse("02-01-2006", data)
 	if err != nil {
 		return "", errors.New("erro ao tentar converter string em data")

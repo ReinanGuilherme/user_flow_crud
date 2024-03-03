@@ -1,10 +1,28 @@
 definitions:
-  controllers.cadastrar_pessoa_request:
+  controllers.cadastrarContaRequest:
     properties:
-      pessoa:
-        $ref: '#/definitions/repositories.Cadastrar_Pessoa_Args'
+      conta:
+        $ref: '#/definitions/repositories.CadastrarContaArgs'
     type: object
-  repositories.Cadastrar_Pessoa_Args:
+  controllers.cadastrarDadosCompletosRequest:
+    properties:
+      conta:
+        $ref: '#/definitions/repositories.CadastrarContaArgs'
+      pessoa:
+        $ref: '#/definitions/repositories.CadastrarPessoaArgs'
+    type: object
+  repositories.CadastrarContaArgs:
+    properties:
+      ativo:
+        type: boolean
+      email:
+        type: string
+      foto_perfil:
+        type: string
+      senha:
+        type: string
+    type: object
+  repositories.CadastrarPessoaArgs:
     properties:
       data_nascimento:
         type: string
@@ -20,30 +38,44 @@ info:
   title: USER FLOW CRUD
   version: "1.0"
 paths:
-  /cadastrar_pessoa:
+  /cadastrarConta:
     post:
       consumes:
       - application/json
-      description: .
+      description: Cadastrar uma nova conta no sistema.
       parameters:
-      - default: Bearer <Token aqui>
-        description: Token
-        in: header
-        name: Authorization
-        required: true
-        type: string
       - description: Objeto
         in: body
         name: object
         required: true
         schema:
-          $ref: '#/definitions/controllers.cadastrar_pessoa_request'
+          $ref: '#/definitions/controllers.cadastrarContaRequest'
       produces:
       - application/json
       responses: {}
-      summary: .
+      summary: Cadastrar uma nova conta no sistema.
       tags:
-      - Pessoa
+      - Cadastrar
+  /cadastrarDadosCompletos:
+    post:
+      consumes:
+      - application/json
+      description: Cadastrar uma nova conta no sistema com seus dados completos como
+        pessoa, endereço e contato.
+      parameters:
+      - description: Objeto
+        in: body
+        name: object
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.cadastrarDadosCompletosRequest'
+      produces:
+      - application/json
+      responses: {}
+      summary: Cadastrar uma nova conta no sistema com seus dados completos como pessoa,
+        endereço e contato.
+      tags:
+      - Cadastrar
   /health:
     get:
       consumes:

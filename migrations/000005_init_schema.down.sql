@@ -1,0 +1,3 @@
+-- Migration DOWN
+ALTER TABLE contas
+ALTER COLUMN senha TYPE VARCHAR(50);

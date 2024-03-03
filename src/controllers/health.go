@@ -3,7 +3,7 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/ReinanGuilherme/user_flow_crud/src/utils/utils_response"
+	"github.com/ReinanGuilherme/user_flow_crud/src/utils/utilsResponse"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,5 +17,5 @@ import (
 // @Router /health [get]
 func Health(c *gin.Context) {
 
-	utils_response.Response(c, http.StatusOK, "Server On.", nil)
+	utilsResponse.Response(c, http.StatusOK, "Server On.", nil)
 }
