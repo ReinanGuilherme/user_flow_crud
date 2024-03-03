@@ -6,5 +6,5 @@ CREATE TABLE enderecos (
     cidade VARCHAR(100),
     estado VARCHAR(50),
     cep VARCHAR(10),
-    fk_id_pessoa INTEGER REFERENCES pessoas(id)
+    fk_id_conta INTEGER REFERENCES contas(id)
 );

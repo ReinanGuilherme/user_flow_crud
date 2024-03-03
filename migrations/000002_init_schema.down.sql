@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS contas;
+DROP TABLE IF EXISTS pessoas;
