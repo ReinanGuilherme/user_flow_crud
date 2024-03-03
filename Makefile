@@ -5,7 +5,7 @@ DB_NAME := user_flow
 DB_HOST := localhost
 DB_PORT := 5432
 DB_SSL_MODE := disable
-MIGRATIONS_PATH := db/migration
+MIGRATIONS_PATH := src/db/migration
 
 # Comando para criar o banco de dados
 create_db:
