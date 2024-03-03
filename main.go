@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"os"
 
-	database "github.com/ReinanGuilherme/user_flow_crud/src/config"
+	"github.com/ReinanGuilherme/user_flow_crud/src/config/database"
 	"github.com/ReinanGuilherme/user_flow_crud/src/routes"
 	"github.com/joho/godotenv"
 )

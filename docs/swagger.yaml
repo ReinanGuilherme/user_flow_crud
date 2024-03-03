@@ -1,6 +1,58 @@
+definitions:
+  controllers.cadastrar_pessoa_request:
+    properties:
+      pessoa:
+        $ref: '#/definitions/repositories.Cadastrar_Pessoa_Args'
+    type: object
+  repositories.Cadastrar_Pessoa_Args:
+    properties:
+      data_nascimento:
+        type: string
+      genero:
+        type: string
+      nome:
+        type: string
+      sobrenome:
+        type: string
+    type: object
 info:
   contact: {}
   title: USER FLOW CRUD
   version: "1.0"
-paths: {}
+paths:
+  /cadastrar_pessoa:
+    post:
+      consumes:
+      - application/json
+      description: .
+      parameters:
+      - default: Bearer <Token aqui>
+        description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Objeto
+        in: body
+        name: object
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.cadastrar_pessoa_request'
+      produces:
+      - application/json
+      responses: {}
+      summary: .
+      tags:
+      - Pessoa
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Rota para verificar o servidor ON.
+      produces:
+      - application/json
+      responses: {}
+      summary: Rota para verificar o servidor ON.
+      tags:
+      - Health
 swagger: "2.0"

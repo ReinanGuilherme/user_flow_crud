@@ -1,14 +1,13 @@
 package routes
 
 import (
-	"net/http"
-
+	"github.com/ReinanGuilherme/user_flow_crud/src/controllers"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
+	docs "github.com/ReinanGuilherme/user_flow_crud/docs"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"github.com/swaggo/swag/example/basic/docs"
 )
 
 func SetupRouter() *gin.Engine {
@@ -26,9 +25,10 @@ func SetupRouter() *gin.Engine {
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	//Configurando uma rota para verificar o servidor ON
-	r.GET("/health", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"message": "Server On"})
-	})
+	r.GET("/health", controllers.Health)
+
+	//Configurando rotas da api
+	SetupRouterApi(r)
 
 	return r
 

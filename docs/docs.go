@@ -14,7 +14,86 @@ const docTemplate = `{
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
-    "paths": {}
+    "paths": {
+        "/cadastrar_pessoa": {
+            "post": {
+                "description": ".",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Pessoa"
+                ],
+                "summary": ".",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "Bearer \u003cToken aqui\u003e",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Objeto",
+                        "name": "object",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controllers.cadastrar_pessoa_request"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/health": {
+            "get": {
+                "description": "Rota para verificar o servidor ON.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Health"
+                ],
+                "summary": "Rota para verificar o servidor ON.",
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "controllers.cadastrar_pessoa_request": {
+            "type": "object",
+            "properties": {
+                "pessoa": {
+                    "$ref": "#/definitions/repositories.Cadastrar_Pessoa_Args"
+                }
+            }
+        },
+        "repositories.Cadastrar_Pessoa_Args": {
+            "type": "object",
+            "properties": {
+                "data_nascimento": {
+                    "type": "string"
+                },
+                "genero": {
+                    "type": "string"
+                },
+                "nome": {
+                    "type": "string"
+                },
+                "sobrenome": {
+                    "type": "string"
+                }
+            }
+        }
+    }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
